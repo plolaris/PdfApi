@@ -9,4 +9,4 @@ Steps:
 4) Don't run PdfApi solution in "Multiple startup projects" mode. It will affect the performance.
 5) Run gRPCApi and RestApi in Release mode when testing
 6) Run Benchmark in Release mode and start it without debugging
-7) Have fun :)
+7) Have fun ヽ(•‿•)ノ
