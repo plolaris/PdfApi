@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+ package PDFService;
+
+option csharp_namespace = "SharedLibrary.Grpc";  
+
+
+
+// The request message containing the pdf's name.
+message PdfRequestpModel {
+  int32 id = 1;
+}
+
+// The response message containing the pdf.
+message PdfResponseModel {
+  int32 pdfId = 1;
+  string pdfName = 2;
+  string pdfContent = 3; 
+}
+// The request message for GetAllPdfs
+message GetAllPdfsPdfRequestModel {
+    string all = 1;
+}
+
+// The response message containing all the pdfs.
+message AllPdfResponseModel {
+    repeated PdfResponseModel AllPdfs = 1;
+}
+
+// The request message for GetAllPdfsStream
+message GetAllPdfsPdfRequestModelStream { 
+}
+// The response message containing all the pdfs.
+message AllPdfResponseModelStream {
+    repeated PdfResponseModel AllPdfs = 1;
+}
+
+// The PDF service definition.
+service PDF {
+  // Gets a pdf
+  rpc GetPdfById (PdfRequestpModel) returns (PdfResponseModel);
+    // Gets a list of pdfs
+  rpc GetAllPdfs (GetAllPdfsPdfRequestModel) returns (AllPdfResponseModel);
+  
+  rpc GetAllPdfsStream (GetAllPdfsPdfRequestModelStream) returns (stream PdfResponseModel);
+}
