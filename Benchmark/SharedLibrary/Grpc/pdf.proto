@@ -7,7 +7,7 @@ option csharp_namespace = "SharedLibrary.Grpc";
 
 
 // The request message containing the pdf's name.
-message PdfRequestpModel {
+message PdfRequestModel {
   int32 id = 1;
 }
 
@@ -15,7 +15,7 @@ message PdfRequestpModel {
 message PdfResponseModel {
   int32 pdfId = 1;
   string pdfName = 2;
-  string pdfContent = 3; 
+  bytes pdfContent = 3; 
 }
 // The request message for GetAllPdfs
 message GetAllPdfsPdfRequestModel {
@@ -38,7 +38,7 @@ message AllPdfResponseModelStream {
 // The PDF service definition.
 service PDF {
   // Gets a pdf
-  rpc GetPdfById (PdfRequestpModel) returns (PdfResponseModel);
+  rpc GetPdfById (PdfRequestModel) returns (PdfResponseModel);
     // Gets a list of pdfs
   rpc GetAllPdfs (GetAllPdfsPdfRequestModel) returns (AllPdfResponseModel);
   
