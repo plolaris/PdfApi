@@ -38,7 +38,7 @@ namespace Benchmark.Clients
         public async Task<PdfResponseModel> GrpcGetPdfBytIdAsync()
         {
             return   (await _client.GetPdfByIdAsync(
-                    new PdfRequestpModel() { Id = new Random().Next(1, 10) }
+                    new PdfRequestModel() { Id = new Random().Next(1, 10) }
                 ));
         }
         public async Task<AllPdfResponseModel> GrpcGetAllPdfsAsync()

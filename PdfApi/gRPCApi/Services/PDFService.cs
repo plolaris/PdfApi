@@ -22,7 +22,7 @@ namespace gRPCApi.Services
             _repository = repository;
         }
         #endregion
-        public override async Task<PdfResponseModel> GetPdfById(PdfRequestpModel request, ServerCallContext context)
+        public override async Task<PdfResponseModel> GetPdfById(PdfRequestModel request, ServerCallContext context)
         {
             _logger.LogInformation("GetPdfById:  " + request.Id);
             PdfResponseModel response = new PdfResponseModel();
@@ -32,7 +32,7 @@ namespace gRPCApi.Services
             {
                 response.PdfId = pdf.pdf_ID;
                 response.PdfName = pdf.pdf_Name; 
-                response.PdfContent = Google.Protobuf.ByteString.CopyFrom(pdf.pdf_Content).ToBase64();
+                response.PdfContent = Google.Protobuf.ByteString.CopyFrom(pdf.pdf_Content);
                 return response;
             }
             return response;
@@ -48,7 +48,7 @@ namespace gRPCApi.Services
                 PdfResponseModel pdfResponseModel = new PdfResponseModel();
                 pdfResponseModel.PdfId = pdf.pdf_ID;
                 pdfResponseModel.PdfName = pdf.pdf_Name;
-                pdfResponseModel.PdfContent = Google.Protobuf.ByteString.CopyFrom(pdf.pdf_Content).ToBase64();
+                pdfResponseModel.PdfContent = Google.Protobuf.ByteString.CopyFrom(pdf.pdf_Content);
                 response.AllPdfs.Add(pdfResponseModel);
             }
             return response; 
@@ -67,7 +67,7 @@ namespace gRPCApi.Services
                 PdfResponseModel pdfResponseModel = new PdfResponseModel();
                 pdfResponseModel.PdfId = pdf.pdf_ID;
                 pdfResponseModel.PdfName = pdf.pdf_Name;
-                pdfResponseModel.PdfContent = Google.Protobuf.ByteString.CopyFrom(pdf.pdf_Content).ToBase64(); 
+                pdfResponseModel.PdfContent = Google.Protobuf.ByteString.CopyFrom(pdf.pdf_Content); 
                 await    responseStream.WriteAsync(pdfResponseModel);
                 }
 
